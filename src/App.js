@@ -3,6 +3,7 @@ import './App.css';
 import RegionSelect from 'react-region-select';
 import objectAssign from 'object-assign';
 import './bootstrap.min.css'
+import './custom.css'
 
 
 class App extends React.Component{
@@ -103,12 +104,12 @@ crop(data, index){
     crop_canvas = document.createElement('canvas');
     var line_break = document.createElement('div')
     line_break.style.cssText = 'height:50px;'
+    crop_canvas.style.cssText = 'border:1px solid black;'
     crop_canvas.width = width
     crop_canvas.height = height
     crop_canvas.getContext('2d').drawImage(img, left,top,width,height,0,0,width,height);
     cropped_image.src = crop_canvas.toDataURL("image/png")
-    this.refs.canvas.appendChild(cropped_image);
-    this.refs.canvas.appendChild(line_break);
+    return cropped_image.src
 }
 
    render(){
@@ -132,19 +133,25 @@ crop(data, index){
                regions={this.state.regions}
                onChange={this.onChange}
                regionRenderer={this.regionRenderer}>
-               <img alt='' src={this.state.image} width='700px'/>
+               <img alt='' className={this.state.image && 'image'} src={this.state.image}/>
               </RegionSelect>
               </div>
               {this.state.button && <button className="btn btn-secondary" onClick={this.view}>Process Image</button>}
 
          </div>}
          {
+           this.state.view === 'croped' && <h2 > Selected Regions </h2>
+         }
+         {
            this.state.view === 'croped' && this.state.regions.map((data,index) => {
-               this.crop(data, index)
+             return( <div className=" cropped-image" style={{display:'inline-grid',width:'32%'}} >
+               <img src={this.crop(data, index)} />
+             </div>
+             )
+
 
            })
          }
-         <div className="text-center" id='canvas' ref='canvas'> {this.state.view === 'croped' && <h2>Selected Regions: </h2>}  <br/></div>
          </div>
 
 
