@@ -24,12 +24,14 @@ class App extends React.Component{
 
    }
    image_processing(event){
-   this.setState({
-     image : URL.createObjectURL(event.target.files[0]),
-     image_name : event.target.files[0].name
-   })
    if((event.target.files[0].type.search('image')) < 0){
-     alert("Please upload Image File")
+     alert("Please upload an Image File")
+   }
+   else{
+     this.setState({
+       image : URL.createObjectURL(event.target.files[0]),
+       image_name : event.target.files[0].name
+     })
    }
    }
 
