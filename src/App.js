@@ -144,8 +144,8 @@ crop(data, index){
          }
          {
            this.state.view === 'croped' && this.state.regions.map((data,index) => {
-             return( <div className=" cropped-image" style={{display:'inline-grid',width:'32%'}} >
-               <img src={this.crop(data, index)} />
+             return( <div className=" cropped-image" style={{display:'inline-grid',width:'32%'}} key={index} >
+               <img alt='' src={this.crop(data, index)} />
              </div>
              )
 
