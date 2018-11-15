@@ -90,16 +90,6 @@ class App extends React.Component{
    );
  }
 }
-getCroppedImg(imgObj, newWidth, newHeight, startX, startY, ratio) {
-    var img = new Image();
-    img.src = this.state.selectedImageURL;
-    var tnCanvas = document.createElement('canvas')
-
-    tnCanvas.width = newWidth;
-    tnCanvas.height = newHeight;
-    tnCanvas.getContext('2d').drawImage(img, startX, startY, newWidth, newHeight);
-    return tnCanvas.toDataURL();
-}
 crop(data, index){
   var img = new Image()
   var cropped_image = new Image()
