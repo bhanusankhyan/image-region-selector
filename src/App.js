@@ -140,7 +140,7 @@ crop(data, index){
          </div>}
          {
            this.state.view === 'croped' && this.state.regions.map((data,index) => {
-               return(<div className="text-center" key = {index}> {this.crop(data, index)} </div>)
+               this.crop(data, index)
 
            })
          }
